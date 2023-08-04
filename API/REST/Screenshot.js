@@ -79,6 +79,12 @@ exports.handler = async (event, context, callback) => {
     }
   }
 
+  var evalStr = null;
+  console.log(`evalStr: ${event.queryStringParameters.evalStr}`)
+  if (event.queryStringParameters.evalStr != null) {
+    evalStr = event.queryStringParameters.evalStr;
+  }
+
   //var screenshotResult = await tools.screnshotForUrl(url, isFullPage, resX, resY, outFormat);
   var screenshotResult = null;
 
@@ -92,7 +98,8 @@ exports.handler = async (event, context, callback) => {
       outFormat,
       orientation,
       waitTime,
-      proxy_server
+      proxy_server,
+      evalStr
     );
   } catch (ex) {
     //do nothing

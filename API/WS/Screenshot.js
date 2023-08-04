@@ -82,7 +82,8 @@ exports.message = async (event, context, callback) => {
           obj.outFormat,
           obj.orientation,
           obj.waitTime,
-          proxy_server
+          proxy_server,
+          obj.evalStr
         );
       } catch (ex) {
         //do nothing

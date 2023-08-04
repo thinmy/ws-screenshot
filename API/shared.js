@@ -11,7 +11,8 @@ module.exports.screnshotForUrlTab = async function (
   outFormat,
   orientation,
   waitTime,
-  proxy_server
+  proxy_server,
+  evalStr
 ) {
   return new Promise(async function (resolve, reject) {
     try {
@@ -68,6 +69,12 @@ module.exports.screnshotForUrlTab = async function (
         isMobile: false,
         deviceScaleFactor: 1,
       });
+
+      if (evalStr !== null && evalStr !== undefined) {
+        try {
+          await page.evaluate((runStr) => eval(runStr), evalStr);
+        } catch (ex) {}
+      }
 
       //scroll the whole page for lazy loading
       if (isfullPage) {
